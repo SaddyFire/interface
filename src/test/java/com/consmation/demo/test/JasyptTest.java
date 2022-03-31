@@ -30,6 +30,10 @@ public class JasyptTest {
         String plainText = "2323";  //w8IoQjdyZt5sfw/LHEresw==
         String plainText2 = "interface123";     //interface123 ->  xmtij2TpTa3FQpvvFR6xkJyyJgTfWzUd
         String encryptedText = standardPBEStringEncryptor.encrypt(plainText2);
+
+
+
+        //我只是随意修改一下看看
         System.out.println(encryptedText);
     }
 
