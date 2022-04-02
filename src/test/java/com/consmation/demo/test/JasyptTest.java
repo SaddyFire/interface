@@ -32,16 +32,6 @@ public class JasyptTest {
         String encryptedText = standardPBEStringEncryptor.encrypt(plainText2);
 
 
-
-        //我只是随意修改一下看看
-
-
-
-        //再修改看看
-
-
-        ///看看这次
-
         System.out.println(encryptedText);
     }
 

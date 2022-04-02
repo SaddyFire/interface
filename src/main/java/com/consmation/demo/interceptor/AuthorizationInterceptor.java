@@ -4,6 +4,7 @@ import com.consmation.demo.autoconfig.properties.InterfaceProperties;
 import com.consmation.demo.exception.CustomException;
 import com.consmation.demo.model.enums.AppHttpCodeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -18,6 +19,7 @@ import java.util.List;
  * @date 2022/3/28
  * @TIME:19:14
  */
+@Component
 public class AuthorizationInterceptor implements HandlerInterceptor {
 
     @Autowired
@@ -43,6 +45,6 @@ public class AuthorizationInterceptor implements HandlerInterceptor {
         if (!whiteList.contains(host)) {
             throw new CustomException(AppHttpCodeEnum.NO_OPERATOR_AUTH);
         }
-        return preHandle(request, response, handler);
+        return true;
     }
 }

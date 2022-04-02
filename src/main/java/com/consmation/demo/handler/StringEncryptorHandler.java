@@ -10,6 +10,7 @@ import org.jasypt.encryption.pbe.config.EnvironmentPBEConfig;
  * @date 2022/3/29
  * @TIME:13:37
  * Encryptor处理器
+ * 针对数据库的password密文处理
  */
 
 public class StringEncryptorHandler implements StringEncryptor {

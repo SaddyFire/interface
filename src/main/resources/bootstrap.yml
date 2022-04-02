@@ -1,0 +1,35 @@
+server:
+  port: 8888
+spring:
+  profiles:
+    active: dev
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+  application:
+    name: interface
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${NACOS_HOST:eca-register}:${NACOS_PORT:8848}
+        namespace: ${NAMESPACE:interface}  # 命名空间
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        file-extension: ${FILE_EXTENSION:yml}
+        group: ${GROUP:DEFAULT_GROUP}
+        prefix: ${spring.application.name}
+        namespace: ${NAMESPACE:interface}  # 命名空间
+        shared-configs:
+          - data-id: common-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+            refresh: true
+          - data-id: ecasqls-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+            refresh: true
+jasypt:
+  encryptor:
+#    password:
+    property:
+      prefix: "PW["
+      suffix: "]"
+
+# log4j2
+#logging:
+#  config: classpath:log4j2.yml

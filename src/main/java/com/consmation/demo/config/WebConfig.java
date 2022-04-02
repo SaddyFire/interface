@@ -1,10 +1,9 @@
 package com.consmation.demo.config;
 
 import com.consmation.demo.interceptor.AuthorizationInterceptor;
-import org.springframework.context.annotation.Bean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet .config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
@@ -13,19 +12,25 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
-    @Bean
-    public HandlerInterceptor getDataInterceptor(){
-        return new AuthorizationInterceptor();
-    }
+//    @Bean
+//    public HandlerInterceptor getAuthorizationInterceptor(){
+//        return new AuthorizationInterceptor();
+//    }
+
+    @Autowired
+    private AuthorizationInterceptor authorizationInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         //添加拦截器
-        registry.addInterceptor(getDataInterceptor())
+        registry.addInterceptor(authorizationInterceptor)
                 .addPathPatterns("/**")
                 .excludePathPatterns(
                         "/user/login",
                         "/user/loginVerification"
                 );
+
+        //此处可继续添加
+
     }
 }
